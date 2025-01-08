@@ -3,7 +3,9 @@
 
 
 <% 
-
+ServletContext context = getServletContext();
+String dbUser = context.getInitParameter("dbUser");
+String dbPass = context.getInitParameter("dbPass");
 %>
 <!DOCTYPE html>
 <html lang="ko">

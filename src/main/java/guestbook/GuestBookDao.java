@@ -1,30 +1,9 @@
 package guestbook;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.List;
 
-public abstract class GuestBookDao {
-	private String dbUser = null;
-	private String dbPass = null;
-	
-	public GuestBookDao(String dbUser, String dbPass) {
-		this.dbUser = dbUser;
-		this.dbPass = dbPass;
-	}
-	
-	protected Connection getConnection() throws SQLException {
-		Connection conn = null;
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String dburl = "jdbc:mysql://localhost:3306/webdb";
-			conn = DriverManager.getConnection(dburl, dbUser, dbPass);
-		} catch (ClassNotFoundException e) {
-			System.err.println("JDBC Driver를 로드하지 못했습니다.");
-			e.printStackTrace();
-		}
-		
-		return conn;
-	}
+public interface GuestBookDao {
+	public abstract List<GuestBookVo> getList();
+	public abstract boolean insert(GuestBookVo vo);
+	public abstract boolean delete(Integer no, String password);
 }
